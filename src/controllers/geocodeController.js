@@ -1,15 +1,20 @@
-var geocodeService = require('../services/geocodeService.js');
+var geocodeController = function (config) {
 
+    var geocodeService = require('../services/geocodeService.js')(config);
+    var doGeocode = function (req, res) {
+        console.log(req.query);
+        console.log(geocodeService.doGeocode);
+        return res.send(geocodeService.doGeocode(req.query.lat, req.query.lng));
+    };
 
-var geocodeController = function(config) {
-    
-    var doGeocode = function(lat, lng) {
-        return geocodeService.doGeocode(config, lat, lng);
+    var doReverseGeocode = function (req, res) {
+        return res.send(geocodeService.doReverseGeocode(config, req.query.address));
+    };
+
+    return {
+        doGeocode: doGeocode,
+        doReverseGeocode: doReverseGeocode
     }
-    
-    var doReverseGeocode = function(address) {
-        return geocodeService.doReverseGeocode(config, address);
-    }
-}
+};
 
-modules.export = geocodeController;
+module.exports = geocodeController;

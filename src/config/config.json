@@ -1,4 +1,5 @@
 {
-    "here.app.id": "<your app ID>",
-    "here.app.code": "<your app Code>"
+    "here_api_url": "<here api url>",
+    "here_app_id": "<your app ID>",
+    "here_app_code": "<your app Code>"
 }
